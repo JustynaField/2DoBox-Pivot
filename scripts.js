@@ -10,6 +10,7 @@ function TaskObj(id,taskTitle,taskBody) {
 function newIdea(parsedOut) {
   $('.display-section').prepend(
   `<div class="card" id="${parsedOut.id}">
+
     <div class="title">
       <h1 class="card-title" contenteditable="true">${parsedOut.title}</h1>
       <button class="delete-btn" type="button" name="button"><img class="btn-icon" src="images/delete.svg" alt="delete button"></img></button>
@@ -17,17 +18,18 @@ function newIdea(parsedOut) {
 
       <p class="card-body" contenteditable="true">${parsedOut.body}</p>
 
-    <section class="priority-vote">
+    <div class="priority-vote">
       <button class="vote-btns up-vote" type="button" name="button"><img class="btn-icon" src="images/upvote.svg" alt="up vote button"></button>
 
       <button class="vote-btns down-vote" type="button" name="button"><img class="btn-icon" src="images/downvote.svg" alt="down vote button"></button>
-      <p class="priority">Quality: <span="priority-level">${parsedOut.quality}</span></p>
-    </section>
+
+      <p class="priority">Quality: <p class="priority-level">${parsedOut.quality}</p></p>
+    </div>
+
   </div>`)
 }
 
 $('.save-button').click(function() {
-
   var id = $.now();
   var taskTitle = $('.task-title').val();
   var taskBody = $('.task-body').val();
@@ -55,12 +57,14 @@ $('.display-section').on('click', '.delete-btn', function() {
 
 $('.display-section').on('click', '.down-vote', function() {
   var localStorageKey = $(this).parents('.card').attr('id');
+
   var localStorageItem = JSON.parse(localStorage.getItem(localStorageKey));
   var newPriority = $(this).siblings('.priority-level');
-  if (newPriority.text() == ' genius') {
-    newPriority.text(' plausible');
-  } else if (newPriority.text() == ' plausible') {
-    newPriority.text(' swill');
+
+  if (newPriority.text() == 'genius') {
+    newPriority.text('plausible');
+  } else if (newPriority.text() == 'plausible') {
+    newPriority.text('swill');
   }
   localStorageItem.quality = newPriority.text();
   localStorage.setItem(localStorageKey, JSON.stringify(localStorageItem));
@@ -71,10 +75,10 @@ $('.display-section').on('click', '.up-vote', function() {
   var localStorageKey = $(this).parents('.card').attr('id');
   var localStorageItem = JSON.parse(localStorage.getItem(localStorageKey));
   var newPriority = $(this).siblings('.priority-level');
-  if (newPriority.text() == ' swill') {
-    newPriority.text(' plausible');
-  } else if (newPriority.text() == ' plausible') {
-    newPriority.text(' genius');
+  if (newPriority.text() == 'swill') {
+    newPriority.text('plausible');
+  } else if (newPriority.text() == 'plausible') {
+    newPriority.text('genius');
   }
   localStorageItem.quality = newPriority.text();
   localStorage.setItem(localStorageKey, JSON.stringify(localStorageItem));
