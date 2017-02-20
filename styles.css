@@ -84,7 +84,7 @@ input {
   width: 90%;
 }
 
-.idea-card {
+.card {
   border-bottom: 1px solid #D1D3D4;
   height: 120%;
   margin-left: auto;
@@ -92,7 +92,7 @@ input {
   width: 90%;
 }
 
-.card-title-box {
+.title {
   display: flex;
   align-content: center;
   justify-content: space-between;
@@ -109,25 +109,25 @@ input {
   width: 100%;
 }
 
-.quality-box {
+.priority-vote {
   display: flex;
   align-items: baseline;
 }
 
-.quality-result {
+.priority {
   font-size: 15pt;
   padding-top: 17px;
 }
 
-.quality-image {
+.btn-icon {
   height: 35px;
 }
 
-.quality-result {
+.priority {
   display: flex;
 }
 
-.quality-btns, .delete-btn {
+.vote-btns, .delete-btn {
   background: transparent;
   border: none;
 }
@@ -142,7 +142,7 @@ input {
     width: 70vw;
   }
 
-  .idea-card {
+  .card {
     width: 70vw;
   }
 
