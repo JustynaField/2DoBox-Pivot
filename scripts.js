@@ -23,10 +23,10 @@ function newIdea(parsedOut) {
 
       <button class="vote-btns down-vote" type="button" name="button"><img class="btn-icon" src="images/downvote.svg" alt="down vote button"></button>
 
-      <p class="priority">Quality: <p class="priority-level">${parsedOut.quality}</p></p>
+      <p class="priority">Quality: &nbsp<p class="priority-level">${parsedOut.quality}</p></p>
     </div>
 
-  </div>`)
+   </div>`)
 }
 
 $('.save-button').click(function() {

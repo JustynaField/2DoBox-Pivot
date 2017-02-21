@@ -14,12 +14,13 @@ var driver_saf = new webdriver.Builder()
     .forBrowser('safari')
     .build();
 
+
+
+//testing the save operation
 saveTask(driver_fx);
 saveTask(driver_chr);
 saveTask(driver_saf);
 
-
-//testing the save operation
 function saveTask (driver) {
   driver.get('https://justynafield.github.io/2DoBox-Pivot/');
 
@@ -32,7 +33,7 @@ function saveTask (driver) {
       // testing title
       driver.findElement(By.className('card-title')).getText().then(function(title) {
         if(title === 'task1') {
-          console.log('Test passed');
+          console.log('Test passed:Title-save');
         } else {
           console.log('Test failed, Title does not match the input.');
         }
@@ -41,25 +42,41 @@ function saveTask (driver) {
       // testing body
       driver.findElement(By.className('card-body')).getText().then(function(body) {
         if(body === 'description1') {
-          console.log('Test passed');
+          console.log('Test passed: Body-save');
         } else {
           console.log('Test failed, Body does not match input.');
         }
       });
     });
 
-  // driver.findElement(By.name('q')).sendKeys('webdriver');
-  // driver.findElement(By.name('btnG')).click();
-  //
-  // driver.sleep(3000).then(function() {
-  //   driver.getTitle().then(function(title) {
-  //     if(title === 'webdriver - Google Search') {
-  //       console.log('Test passed');
-  //     } else {
-  //       console.log('Test failed');
-  //     }
-  //   });
-  // });
 
   driver.quit();
 }
+
+//testing the upvote functionality
+// upVote(driver_fx);
+// upVote(driver_chr);
+// upVote(driver_saf);
+//
+// function upVote (driver) {
+//   driver.get('https://justynafield.github.io/2DoBox-Pivot/');
+//   driver.findElement(By.className('priority-level')).getText().then(function(priority) {
+//     if (priority === 'swill') {
+//       driver.findElement(By.className('up-vote')).click();
+//
+//       driver.sleep(3000).then(function() {
+//       driver.findElement(By.className('priority-level')).getText().then(function(priority) {
+//         if(priority === 'plausible') {
+//           console.log('Test passed:swill-upvote');
+//         }
+//         else {
+//           console.log('Test failed, swill upvote not changed to plausible');
+//         }
+//
+//       });
+//     });
+//     }
+//   });
+//
+//     driver.quit();
+// }
