@@ -1,4 +1,4 @@
-getLocalStorage()
+getLocalStorage();
 
 function TaskObj(id,taskTitle,taskBody) {
   this.id = id;
@@ -42,7 +42,6 @@ $('.save-button').click(function() {
 })
 
 function getLocalStorage() {
-  $('.display-section').html('');
   for (var i = 0; i < localStorage.length; i++) {
     var fromStorage = JSON.parse(localStorage.getItem(localStorage.key(i)));
     newIdea(fromStorage);
