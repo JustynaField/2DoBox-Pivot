@@ -34,15 +34,15 @@ $('.save-button').click(function() {
   var taskTitle = $('.task-title').val();
   var taskBody = $('.task-body').val();
   var taskObj = new TaskObj(id,taskTitle,taskBody);
+  newIdea(taskObj);
   var stringifyObj = JSON.stringify(taskObj);
   localStorage.setItem(id, stringifyObj);
   $('.task-title').val("");
   $('.task-body').val("");
-  getLocalStorage();
+
 })
 
 function getLocalStorage() {
-  $('.display-section').html('');
   for (var i = 0; i < localStorage.length; i++) {
     var fromStorage = JSON.parse(localStorage.getItem(localStorage.key(i)));
     newIdea(fromStorage);
@@ -68,7 +68,6 @@ $('.display-section').on('click', '.down-vote', function() {
   }
   localStorageItem.quality = newPriority.text();
   localStorage.setItem(localStorageKey, JSON.stringify(localStorageItem));
-  getLocalStorage();
 });
 
 $('.display-section').on('click', '.up-vote', function() {
@@ -82,7 +81,6 @@ $('.display-section').on('click', '.up-vote', function() {
   }
   localStorageItem.quality = newPriority.text();
   localStorage.setItem(localStorageKey, JSON.stringify(localStorageItem));
-  getLocalStorage();
 });
 
 
