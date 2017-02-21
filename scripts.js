@@ -16,7 +16,7 @@ function newIdea(parsedOut) {
       <button class="delete-btn" type="button" name="button"><img class="btn-icon" src="images/delete.svg" alt="delete button"></img></button>
     </div>
 
-      <p class="card-body" contenteditable="true">${parsedOut.body}</p>
+    <p class="card-body" contenteditable="true">${parsedOut.body}</p>
 
     <div class="priority-vote">
       <button class="vote-btns up-vote" type="button" name="button"><img class="btn-icon" src="images/upvote.svg" alt="up vote button"></button>
@@ -91,7 +91,6 @@ $('.display-section').on('click', '.up-vote', function() {
   localStorageItem.quality = newPriority.text();
   setLocalStorage(localStorageItem);
 });
-
 
 $('.display-section').on('blur', '.card-title', function() {
   var localStorageKey = $(this).parents('.card').attr('id');
