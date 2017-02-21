@@ -1,4 +1,4 @@
-getLocalStorage();
+initLocalStorage();
 
 function TaskObj(id,taskTitle,taskBody) {
   this.id = id;
@@ -35,18 +35,29 @@ $('.save-button').click(function() {
   var taskBody = $('.task-body').val();
   var taskObj = new TaskObj(id,taskTitle,taskBody);
   newIdea(taskObj);
-  var stringifyObj = JSON.stringify(taskObj);
-  localStorage.setItem(id, stringifyObj);
-  $('.task-title').val("");
-  $('.task-body').val("");
-
+  setLocalStorage(taskObj);
+  clearFields();
 })
 
-function getLocalStorage() {
+function clearFields() {
+  $('.task-title').val("");
+  $('.task-body').val("");
+}
+
+function setLocalStorage(taskObj) {
+  var stringifyObj = JSON.stringify(taskObj);
+  localStorage.setItem(id, stringifyObj);
+}
+
+function initLocalStorage() {
   for (var i = 0; i < localStorage.length; i++) {
     var fromStorage = JSON.parse(localStorage.getItem(localStorage.key(i)));
     newIdea(fromStorage);
   }
+}
+
+function getLocalStorage(id) {
+   return JSON.parse(localStorage.getItem(localStorageKey));
 }
 
 $('.display-section').on('click', '.delete-btn', function() {
@@ -57,22 +68,20 @@ $('.display-section').on('click', '.delete-btn', function() {
 
 $('.display-section').on('click', '.down-vote', function() {
   var localStorageKey = $(this).parents('.card').attr('id');
-
-  var localStorageItem = JSON.parse(localStorage.getItem(localStorageKey));
+  var localStorageItem = getLocalStorage(localStorageKey);
   var newPriority = $(this).siblings('.priority-level');
-
   if (newPriority.text() == 'genius') {
     newPriority.text('plausible');
   } else if (newPriority.text() == 'plausible') {
     newPriority.text('swill');
   }
   localStorageItem.quality = newPriority.text();
-  localStorage.setItem(localStorageKey, JSON.stringify(localStorageItem));
+  setLocalStorage(localStorageItem);
 });
 
 $('.display-section').on('click', '.up-vote', function() {
   var localStorageKey = $(this).parents('.card').attr('id');
-  var localStorageItem = JSON.parse(localStorage.getItem(localStorageKey));
+  var localStorageItem = getLocalStorage(localStorageKey);
   var newPriority = $(this).siblings('.priority-level');
   if (newPriority.text() == 'swill') {
     newPriority.text('plausible');
@@ -80,7 +89,7 @@ $('.display-section').on('click', '.up-vote', function() {
     newPriority.text('genius');
   }
   localStorageItem.quality = newPriority.text();
-  localStorage.setItem(localStorageKey, JSON.stringify(localStorageItem));
+  setLocalStorage(localStorageItem);
 });
 
 
@@ -105,11 +114,4 @@ $('.search-field').on('keyup', function(){
     var unmatch = !!text.match(lookFor);
     $(element).toggle(unmatch);
   })
-})
-
-$('.display-section').on('keypress','.card-title, .card-body', function(e){
-  if (e.which === 13){
-    e.preventDefault()
-  $('.card-title, .card-body').blur()
-  }
 })
