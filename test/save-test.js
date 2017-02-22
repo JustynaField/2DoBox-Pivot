@@ -52,31 +52,3 @@ function saveTask (driver) {
 
   driver.quit();
 }
-
-//testing the upvote functionality
-// upVote(driver_fx);
-// upVote(driver_chr);
-// upVote(driver_saf);
-//
-// function upVote (driver) {
-//   driver.get('https://justynafield.github.io/2DoBox-Pivot/');
-//   driver.findElement(By.className('priority-level')).getText().then(function(priority) {
-//     if (priority === 'swill') {
-//       driver.findElement(By.className('up-vote')).click();
-//
-//       driver.sleep(3000).then(function() {
-//       driver.findElement(By.className('priority-level')).getText().then(function(priority) {
-//         if(priority === 'plausible') {
-//           console.log('Test passed:swill-upvote');
-//         }
-//         else {
-//           console.log('Test failed, swill upvote not changed to plausible');
-//         }
-//
-//       });
-//     });
-//     }
-//   });
-//
-//     driver.quit();
-// }
