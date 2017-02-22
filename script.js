@@ -1,10 +1,11 @@
 initLocalStorage();
+mostRecentIdeas();
 
 function TaskObj(id,taskTitle,taskBody) {
   this.id = id;
   this.title = taskTitle;
   this.body = taskBody;
-  this.quality = 'swill';
+  this.quality = 'normal';
   this.status = 'incomplete';
 }
 
@@ -36,8 +37,9 @@ $('.save-button').click(function() {
   var taskTitle = $('.task-title').val();
   var taskBody = $('.task-body').val();
   var taskObj = new TaskObj(id,taskTitle,taskBody);
-  newIdea(taskObj);
   setLocalStorage(taskObj);
+  mostRecentIdeas();
+  newIdea(taskObj);
   clearFields();
   disableSaveButton();
 })
@@ -76,10 +78,16 @@ $('.display-section').on('click', '.down-vote', function() {
   var localStorageKey = $(this).parents('.card').attr('id');
   var localStorageItem = getLocalStorage(localStorageKey);
   var newPriority = $(this).siblings('.priority-level');
-  if (newPriority.text() == 'genius') {
-    newPriority.text('plausible');
-  } else if (newPriority.text() == 'plausible') {
-    newPriority.text('swill');
+  if (newPriority.text() == 'critical') {
+    newPriority.text('high');
+  } else if (newPriority.text() == 'high') {
+    newPriority.text('normal');
+  }
+  else if (newPriority.text() == 'normal') {
+    newPriority.text('low');
+  }
+  else if (newPriority.text() == 'low') {
+    newPriority.text('none');
   }
   localStorageItem.quality = newPriority.text();
   setLocalStorage(localStorageItem);
@@ -89,10 +97,16 @@ $('.display-section').on('click', '.up-vote', function() {
   var localStorageKey = $(this).parents('.card').attr('id');
   var localStorageItem = getLocalStorage(localStorageKey);
   var newPriority = $(this).siblings('.priority-level');
-  if (newPriority.text() == 'swill') {
-    newPriority.text('plausible');
-  } else if (newPriority.text() == 'plausible') {
-    newPriority.text('genius');
+  if (newPriority.text() == 'normal') {
+    newPriority.text('high');
+  } else if (newPriority.text() == 'high') {
+    newPriority.text('critical');
+  }
+  else if (newPriority.text() == 'none') {
+    newPriority.text('low');
+  }
+  else if (newPriority.text() == 'low') {
+    newPriority.text('normal');
   }
   localStorageItem.quality = newPriority.text();
   setLocalStorage(localStorageItem);
@@ -169,3 +183,24 @@ $('.show-completed-tasks').on('click', function() {
   }
 
 });
+
+
+// $('.show-more-tasks').on('click', mostRecentIdeas);
+
+function mostRecentIdeas() {
+  var storageArray = [];
+  for (var i = 0; i < localStorage.length; i++) {
+    var fromStorage = JSON.parse(localStorage.getItem(localStorage.key(i)));
+    storageArray.push(fromStorage);
+  }
+
+  for (var j = storageArray.length; j >= 0; j--) {
+
+    if(j < storageArray.length - 10) {
+      console.log("in hide" + " " + storageArray.length, j);
+      var idValue = "#" + storageArray[j].id;
+      console.log(idValue);
+      $(idValue).hide();
+    }
+  }
+}
