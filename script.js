@@ -5,6 +5,7 @@ function TaskObj(id,taskTitle,taskBody) {
   this.title = taskTitle;
   this.body = taskBody;
   this.quality = 'swill';
+  this.status = 'incomplete';
 }
 
 function newIdea(parsedOut) {
@@ -135,5 +136,19 @@ $('.task-title, .task-body' ).on('keyup', function () {
 
 $('.display-section').on('click', '.completed-task', function() {
   $(this).parent().toggleClass('gray-out');
+  var localStorageKey = $(this).parents('.card').attr('id');
+  var localStorageItem = JSON.parse(localStorage.getItem(localStorageKey));
+  var status = localStorageItem.status;
+  if(status === 'incomplete') {
+    localStorageItem.status = 'complete';
 
+  }
+  else {
+    localStorageItem.status = 'incomplete';
+  }
+  setLocalStorage(localStorageItem);
 });
+
+// checkTaskStatus() {
+//
+// }
