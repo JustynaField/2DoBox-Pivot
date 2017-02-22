@@ -1,31 +1,38 @@
-body {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0px;
+body, input, .show-completed-tasks, .completed-task {
   font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+  font-family: 'Roboto Slab', serif;
+}
+
+body {
+  text-align: center;
+  padding: 0px;
+  width: 100%;
 }
 
 header {
   padding-top: 3vh;
   text-align: center;
   width: 100vw;
-  margin top: 0px;
 }
 
+
+/*input field section */
 .input-section {
+  background-color: #E5F3F2;
   display: flex;
   flex-wrap: wrap;
-  background-color: #E5F3F2;
-  width: 100vw;
   height: 60vh;
   margin: 0px;
+  width: 100vw;
 }
 
 h1 {
-  margin: 0px;
   color: #00A79D;
-  font-family: 'Roboto Slab', serif;
   font-size: 34px;
+  margin: 0px;
 }
 
 .title-box {
@@ -38,9 +45,9 @@ header h1 {
 }
 
 .input-field {
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
   height: 45vh;
   margin-bottom: 2vh;
@@ -48,9 +55,8 @@ header h1 {
 
 input {
   font-size: 20pt;
+  height: 40px;
   width: 90vw;
-  height: 4vh;
-  font-family: 'Open Sans', sans-serif;
 }
 
 .task-body {
@@ -58,73 +64,111 @@ input {
 }
 
 .save-button {
-  border: none;
-  font-size: 25px;
-  letter-spacing: 2px;
-  width: 90vw;
   background-color: #00A79D;
+  border: none;
   color: #FFFFFF;
-  height: 6vh;
+  font-size: 25px;
+  height: 40px;
+  letter-spacing: 2px;
+  margin: 0;
+  width: 91vw;
 }
 
+.save-button:hover {
+  background-color: #045e55;
+}
+
+.save-button:disabled {
+  background-color: #92b2af;
+}
+
+
+/*search fields section*/
 .search-field {
-  text-align: center;
-  margin-bottom: 5vh;
-  margin-top: 5vh;
-  width: 100vw;
+  width: 88vw;
+  height: 30px;
 }
 
+.show-completed-tasks {
+  background-color: #00A79D;
+  border: none;
+  color: white;
+  height: 40px;
+  letter-spacing: .05em;
+  margin: 20px;
+  width: 90vw;
+}
+
+.show-completed-tasks:hover {
+  background-color: #045e55;
+}
+
+.gray-out {
+  background-color: #e5e5e5;
+}
+
+/*display section*/
 .display-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   font-size: 18px;
-  margin-left: auto;
-  margin-right: auto;
+  padding-top: 40px;
+  margin: auto;
   width: 90%;
 }
 
+
+/*card styling*/
 .card {
   border-bottom: 1px solid #D1D3D4;
-  height: 120%;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
+  margin: auto;
+  min-height: 250px;
+  width: 88vw;
 }
 
 .title {
-  display: flex;
-  align-content: center;
-  justify-content: space-between;
   font-size: 12px;
   margin-top: 10px;
+  padding-left: 15px;
+  position: relative;
+  text-align: left;
 }
 
 .card-title {
   font-size: 20pt;
-  width: 60%;
-}
-
-.card-body {
-  width: 100%;
-}
-
-.priority-vote {
-  display: flex;
-  align-items: baseline;
-}
-
-.priority {
-  font-size: 15pt;
-  padding-top: 17px;
+  width: 85%;
 }
 
 .btn-icon {
   height: 35px;
 }
 
-.priority {
+.delete-btn {
+  padding-right: 15px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.card-body {
+  font-size: 22px;
+  padding: 0 15px 0 0;
+  text-align: left;
+}
+
+.priority-vote {
   display: flex;
+  margin: 0;
+  bottom: 0;
+}
+
+.priority {
+  font-size: 15pt;
+  padding-top: 17px;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
 }
 
 .vote-btns, .delete-btn {
@@ -132,13 +176,42 @@ input {
   border: none;
 }
 
+.completed-task {
+  background-color: #00A79D;
+  border: none;
+  color: white;
+  float: left;
+  font-size: 16px;
+  height: 30px;
+  margin-left: 15px;
+  width: 240px;
+}
+
+.completed-task:hover {
+  background-color: #045e55;
+}
+
+
 @media screen and (min-width: 650px){
+
+.input-field {
+  margin: auto;
+  }
 
   input {
     width: 70vw;
   }
 
   .save-button {
+    width: 70vw;
+    margin: 0;
+  }
+
+  .search-field {
+    width: 70vw;
+  }
+
+  .show-completed-tasks {
     width: 70vw;
   }
 
@@ -151,25 +224,43 @@ input {
 @media screen and (min-width: 850px) {
 
   header {
-    height: 7vh;
+    height: 80px;
+  }
+
+  .input-section {
+    padding-bottom: 25px;
   }
 
   h1 {
     font-size: 64px;
-    margin-top: 10px;
+    margin: 0;
+  }
+
+  .title-box {
+    font-size: 64px;
   }
 
   .save-button {
-    margin-top: 15px;
+    margin-top: 00;
+  }
+
+  .search-field {
+    height: 45px;
+    width: 50vw;
+  }
+
+  .show-completed-tasks {
+    width: 50vw;
   }
 
   .task-body {
-    height: 5vh;
+    height: 40px;
   }
 
   .input-field {
     height: 30vh;
     margin-bottom: 0px;
+    width: 70vw;
   }
 
   .input-section {
