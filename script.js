@@ -60,7 +60,8 @@ function initLocalStorage() {
 }
 
 function getLocalStorage(id) {
-   return JSON.parse(localStorage.getItem(localStorageKey));
+  localStorageKey = id;
+  return JSON.parse(localStorage.getItem(localStorageKey));
 }
 
 $('.display-section').on('click', '.delete-btn', function() {
