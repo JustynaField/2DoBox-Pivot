@@ -17,11 +17,11 @@ var driver_saf = new webdriver.Builder()
 
 
 //testing the save operation
-saveTask(driver_fx);
-saveTask(driver_chr);
-saveTask(driver_saf);
+deleteTask(driver_fx);
+deleteTask(driver_chr);
+deleteTask(driver_saf);
 
-function saveTask (driver) {
+function deleteTask (driver) {
   driver.get('https://justynafield.github.io/2DoBox-Pivot/');
 
     driver.findElement(By.className('task-title')).sendKeys('task1');
