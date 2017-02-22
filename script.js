@@ -134,6 +134,6 @@ $('.task-title, .task-body' ).on('keyup', function () {
 });
 
 $('.display-section').on('click', '.completed-task', function() {
-  $(this).parent().css('background-color', 'gray');
+  $(this).parent().toggleClass('gray-out');
 
 });

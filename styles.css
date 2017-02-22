@@ -1,5 +1,12 @@
-body {
+body, input, .show-completed-tasks, .completed-task {
   font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+  font-family: 'Roboto Slab', serif;
+}
+
+body {
   text-align: center;
   padding: 0px;
   width: 100%;
@@ -24,7 +31,6 @@ header {
 
 h1 {
   color: #00A79D;
-  font-family: 'Roboto Slab', serif;
   font-size: 34px;
   margin: 0px;
 }
@@ -48,7 +54,6 @@ header h1 {
 }
 
 input {
-  font-family: 'Open Sans', sans-serif;
   font-size: 20pt;
   height: 40px;
   width: 90vw;
@@ -88,13 +93,19 @@ input {
   background-color: #00A79D;
   border: none;
   color: white;
-  font-family: 'Open Sans', sans-serif;
   height: 40px;
   letter-spacing: .05em;
   margin: 20px;
   width: 90vw;
 }
 
+.show-completed-tasks:hover {
+  background-color: #045e55;
+}
+
+.gray-out {
+  background-color: #e5e5e5;
+}
 
 /*display section*/
 .display-section {
@@ -113,14 +124,15 @@ input {
   border-bottom: 1px solid #D1D3D4;
   margin: auto;
   min-height: 250px;
-  width: 90vw;
-  border: 1px dashed tomato;
+  width: 88vw;
 }
 
 .title {
   font-size: 12px;
   margin-top: 10px;
+  padding-left: 15px;
   position: relative;
+  text-align: left;
 }
 
 .card-title {
@@ -140,32 +152,45 @@ input {
 }
 
 .card-body {
-  padding: 0 15px;
+  font-size: 22px;
+  padding: 0 15px 0 0;
   text-align: left;
 }
 
 .priority-vote {
   display: flex;
-  align-items: baseline;
   margin: 0;
+  bottom: 0;
 }
 
 .priority {
   font-size: 15pt;
   padding-top: 17px;
-}
-
-.priority {
   display: flex;
   flex-direction: row;
   padding: 0;
 }
 
-
 .vote-btns, .delete-btn {
   background: transparent;
   border: none;
 }
+
+.completed-task {
+  background-color: #00A79D;
+  border: none;
+  color: white;
+  float: left;
+  font-size: 16px;
+  height: 30px;
+  margin-left: 15px;
+  width: 240px;
+}
+
+.completed-task:hover {
+  background-color: #045e55;
+}
+
 
 @media screen and (min-width: 650px){
 
@@ -220,8 +245,8 @@ input {
   }
 
   .search-field {
-    width: 50vw;
     height: 45px;
+    width: 50vw;
   }
 
   .show-completed-tasks {
@@ -234,8 +259,8 @@ input {
 
   .input-field {
     height: 30vh;
-    width: 70vw;
     margin-bottom: 0px;
+    width: 70vw;
   }
 
   .input-section {
