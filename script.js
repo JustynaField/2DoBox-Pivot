@@ -57,6 +57,7 @@ function initLocalStorage() {
   for (var i = 0; i < localStorage.length; i++) {
     var fromStorage = JSON.parse(localStorage.getItem(localStorage.key(i)));
     newIdea(fromStorage);
+    checkStatusStyling(fromStorage);
   }
 }
 
@@ -114,11 +115,9 @@ $('.display-section').on('blur', '.card-body', function() {
 $('.search-field').on('keyup', function(){
   var lookFor = $(this).val().toLowerCase();
   $('.card').each(function(index, element){
-
     var text = $(element).children('.title').text().toLowerCase();
     var unmatch = !!text.match(lookFor);
     $(element).toggle(unmatch);
-
   })
 })
 
@@ -134,21 +133,39 @@ $('.task-title, .task-body' ).on('keyup', function () {
   disableSaveButton();
 });
 
+
 $('.display-section').on('click', '.completed-task', function() {
-  $(this).parent().toggleClass('gray-out');
   var localStorageKey = $(this).parents('.card').attr('id');
   var localStorageItem = JSON.parse(localStorage.getItem(localStorageKey));
   var status = localStorageItem.status;
   if(status === 'incomplete') {
     localStorageItem.status = 'complete';
-
   }
   else {
     localStorageItem.status = 'incomplete';
   }
   setLocalStorage(localStorageItem);
+  checkStatusStyling(localStorageItem);
 });
 
-// checkTaskStatus() {
-//
-// }
+function checkStatusStyling(fromStorage) {
+  var idValue = "#" + fromStorage.id;
+  if (fromStorage.status === 'complete') {
+    $(idValue).css('background-color', '#e5e5e5');
+  } else {
+    $(idValue).css('background-color', 'white');
+  }
+}
+
+$('.show-completed-tasks').on('click', function() {
+  var storageArray = [];
+  for (var i = 0; i < localStorage.length; i++) {
+    var fromStorage = JSON.parse(localStorage.getItem(localStorage.key(i)));
+    storageArray.push(fromStorage);
+    if (storageArray[i].status === 'incomplete') {
+      var idValue = "#" + storageArray[i].id;
+      $(idValue).toggle();
+    }
+  }
+
+});
