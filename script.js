@@ -14,9 +14,8 @@ function newIdea(parsedOut) {
     <div class="title">
       <h1 class="card-title" contenteditable="true">${parsedOut.title}</h1>
       <button class="delete-btn" type="button" name="button"><img class="btn-icon" src="images/delete.svg" alt="delete button"></img></button>
+      <p class="card-body" contenteditable="true">${parsedOut.body}</p>
     </div>
-
-    <p class="card-body" contenteditable="true">${parsedOut.body}</p>
 
     <div class="priority-vote">
       <button class="vote-btns up-vote" type="button" name="button"><img class="btn-icon" src="images/upvote.svg" alt="up vote button"></button>
@@ -26,6 +25,8 @@ function newIdea(parsedOut) {
       <p class="priority">Quality: &nbsp<p class="priority-level">${parsedOut.quality}</p></p>
     </div>
 
+    <button class="completed-task">Task Completed</button>
+
    </div>`)
 }
 
@@ -34,7 +35,6 @@ $('.save-button').click(function() {
   var taskTitle = $('.task-title').val();
   var taskBody = $('.task-body').val();
   var taskObj = new TaskObj(id,taskTitle,taskBody);
-
   newIdea(taskObj);
   setLocalStorage(taskObj);
   clearFields();
@@ -60,7 +60,8 @@ function initLocalStorage() {
 }
 
 function getLocalStorage(id) {
-   return JSON.parse(localStorage.getItem(localStorageKey));
+  localStorageKey = id;
+  return JSON.parse(localStorage.getItem(localStorageKey));
 }
 
 $('.display-section').on('click', '.delete-btn', function() {
@@ -112,9 +113,11 @@ $('.display-section').on('blur', '.card-body', function() {
 $('.search-field').on('keyup', function(){
   var lookFor = $(this).val().toLowerCase();
   $('.card').each(function(index, element){
-    var text = $(element).children().text().toLowerCase();
+
+    var text = $(element).children('.title').text().toLowerCase();
     var unmatch = !!text.match(lookFor);
     $(element).toggle(unmatch);
+
   })
 })
 
@@ -128,4 +131,9 @@ function disableSaveButton() {
 
 $('.task-title, .task-body' ).on('keyup', function () {
   disableSaveButton();
+});
+
+$('.display-section').on('click', '.completed-task', function() {
+  $(this).parent().css('background-color', 'gray');
+
 });
