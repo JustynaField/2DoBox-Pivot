@@ -34,17 +34,20 @@ $('.save-button').click(function() {
   var taskTitle = $('.task-title').val();
   var taskBody = $('.task-body').val();
   var taskObj = new TaskObj(id,taskTitle,taskBody);
+
   newIdea(taskObj);
   setLocalStorage(taskObj);
   clearFields();
+  disableSaveButton();
 })
 
 function clearFields() {
-  $('.task-title').val("");
-  $('.task-body').val("");
+  $('.task-title').val('');
+  $('.task-body').val('');
 }
 
 function setLocalStorage(taskObj) {
+  var id = taskObj.id;
   var stringifyObj = JSON.stringify(taskObj);
   localStorage.setItem(id, stringifyObj);
 }
@@ -114,3 +117,15 @@ $('.search-field').on('keyup', function(){
     $(element).toggle(unmatch);
   })
 })
+
+function disableSaveButton() {
+  if ($('.task-title').val() === "" || $('.task-body').val() === "") {
+    $('.save-button').prop('disabled', true);
+  } else {
+    $('.save-button').prop('disabled', false);
+  }
+}
+
+$('.task-title, .task-body' ).on('keyup', function () {
+  disableSaveButton();
+});
