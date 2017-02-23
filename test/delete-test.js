@@ -10,16 +10,16 @@ var driver_chr = new webdriver.Builder()
     .forBrowser('chrome')
     .build();
 
-var driver_saf = new webdriver.Builder()
-    .forBrowser('safari')
-    .build();
+// var driver_saf = new webdriver.Builder()
+//     .forBrowser('safari')
+//     .build();
 
 
 
 //testing the save operation
 deleteTask(driver_fx);
 deleteTask(driver_chr);
-deleteTask(driver_saf);
+// deleteTask(driver_saf);
 
 function deleteTask (driver) {
   driver.get('https://justynafield.github.io/2DoBox-Pivot/');
