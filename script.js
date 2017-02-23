@@ -192,9 +192,7 @@ function mostRecentIdeas() {
   }
   for (var j = storageArray.length; j >= 0; j--) {
     if(j < storageArray.length - 10) {
-      console.log("in hide" + " " + storageArray.length, j);
       var idValue = "#" + storageArray[j].id;
-      console.log(idValue);
       $(idValue).hide();
     }
   }
@@ -210,5 +208,24 @@ $('.show-more-tasks').on('click', function() {
     var idValue = "#" + storageArray[i].id;
     $(idValue).show();
   }
-
 });
+
+$('.none, .low, .normal, .high, .critical').on('click', function () {
+  var priorityButton = $(this).text().toLowerCase();
+  console.log(priorityButton);
+  checkPriority(priorityButton);
+});
+
+function checkPriority(priorityButton) {
+  console.log(priorityButton);
+  for (var i = 0; i < localStorage.length; i++) {
+    var fromStorage = JSON.parse(localStorage.getItem(localStorage.key(i)));
+    var idValue = '#'+fromStorage.id;
+    var priority = fromStorage.quality;
+    console.log(idValue);
+    console.log(priority);
+      if (priorityButton !== priority) {
+        $(idValue).hide();
+      }
+  }
+}
