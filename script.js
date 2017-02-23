@@ -178,14 +178,11 @@ $('.show-completed-tasks').on('click', function() {
     storageArray.push(fromStorage);
     if (storageArray[i].status === 'incomplete') {
       var idValue = "#" + storageArray[i].id;
-      $(idValue).toggle();
+      $(idValue).hide();
     }
   }
-
 });
 
-
-// $('.show-more-tasks').on('click', mostRecentIdeas);
 
 function mostRecentIdeas() {
   var storageArray = [];
@@ -193,9 +190,7 @@ function mostRecentIdeas() {
     var fromStorage = JSON.parse(localStorage.getItem(localStorage.key(i)));
     storageArray.push(fromStorage);
   }
-
   for (var j = storageArray.length; j >= 0; j--) {
-
     if(j < storageArray.length - 10) {
       console.log("in hide" + " " + storageArray.length, j);
       var idValue = "#" + storageArray[j].id;
@@ -204,3 +199,16 @@ function mostRecentIdeas() {
     }
   }
 }
+
+
+$('.show-more-tasks').on('click', function() {
+  var storageArray = [];
+  for (var i = 0; i < localStorage.length; i++) {
+    var fromStorage = JSON.parse(localStorage.getItem(localStorage.key(i)));
+
+    storageArray.push(fromStorage);
+    var idValue = "#" + storageArray[i].id;
+    $(idValue).show();
+  }
+
+});
