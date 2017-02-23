@@ -5,7 +5,7 @@ function TaskObj(id,taskTitle,taskBody) {
   this.id = id;
   this.title = taskTitle;
   this.body = taskBody;
-  this.quality = 'normal';
+  this.priority = 'normal';
   this.status = 'incomplete';
 }
 
@@ -24,7 +24,7 @@ function newIdea(parsedOut) {
 
       <button class="vote-btns down-vote" type="button" name="button"><img class="btn-icon" src="images/downvote.svg" alt="down vote button"></button>
 
-      <p class="priority">Quality: &nbsp<p class="priority-level">${parsedOut.quality}</p></p>
+      <p class="priority">Priority: &nbsp<p class="priority-level">${parsedOut.priority}</p></p>
     </div>
 
     <button class="completed-task">Task Completed</button>
@@ -64,8 +64,7 @@ function initLocalStorage() {
 }
 
 function getLocalStorage(id) {
-  localStorageKey = id;
-  return JSON.parse(localStorage.getItem(localStorageKey));
+  return JSON.parse(localStorage.getItem(id));
 }
 
 $('.display-section').on('click', '.delete-btn', function() {
@@ -89,7 +88,7 @@ $('.display-section').on('click', '.down-vote', function() {
   else if (newPriority.text() == 'low') {
     newPriority.text('none');
   }
-  localStorageItem.quality = newPriority.text();
+  localStorageItem.priority = newPriority.text();
   setLocalStorage(localStorageItem);
 });
 
@@ -108,7 +107,7 @@ $('.display-section').on('click', '.up-vote', function() {
   else if (newPriority.text() == 'low') {
     newPriority.text('normal');
   }
-  localStorageItem.quality = newPriority.text();
+  localStorageItem.priority = newPriority.text();
   setLocalStorage(localStorageItem);
 });
 
@@ -198,12 +197,10 @@ function mostRecentIdeas() {
   }
 }
 
-
 $('.show-more-tasks').on('click', function() {
   var storageArray = [];
   for (var i = 0; i < localStorage.length; i++) {
     var fromStorage = JSON.parse(localStorage.getItem(localStorage.key(i)));
-
     storageArray.push(fromStorage);
     var idValue = "#" + storageArray[i].id;
     $(idValue).show();
@@ -221,7 +218,7 @@ function checkPriority(priorityButton) {
   for (var i = 0; i < localStorage.length; i++) {
     var fromStorage = JSON.parse(localStorage.getItem(localStorage.key(i)));
     var idValue = '#'+fromStorage.id;
-    var priority = fromStorage.quality;
+    var priority = fromStorage.priority;
     console.log(idValue);
     console.log(priority);
       if (priorityButton !== priority) {
