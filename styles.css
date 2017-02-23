@@ -1,4 +1,4 @@
-body, input, .show-completed-tasks, .completed-task {
+body, input, .show-completed-tasks, .completed-task, .status-btns {
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -87,7 +87,7 @@ input {
 /*search fields section*/
 .search-field {
   width: 88vw;
-  height: 30px;
+  height: 40px;
 }
 
 .show-completed-tasks {
@@ -193,6 +193,42 @@ input {
 }
 
 
+/*new functionality*/
+.new-func-btn {
+  background-color: #00A79D;
+  border: none;
+  color: white;
+  display: block;
+  font-size: 16px;
+  height: 35px;
+  letter-spacing: .1em;
+  margin: auto;
+  margin-top: 20px;
+  width: 90vw;
+
+}
+
+.new-func-btn:hover {
+  background-color: #045e55;
+}
+
+.status-buttons {
+  margin: 20px 0;
+}
+
+.status-btns {
+  background-color: #ed9e6a;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  margin: 5px;
+  width: 100px;
+}
+
+.status-btns:hover {
+  background-color: #ce7f4e;
+}
+
 @media screen and (min-width: 650px){
 
 .input-field {
@@ -209,12 +245,13 @@ input {
   }
 
   .search-field {
+    height: 40px;
     width: 70vw;
   }
 
-  .show-completed-tasks {
-    width: 70vw;
-  }
+  .new-func-btn {
+      width: 70vw;
+    }
 
   .card {
     width: 70vw;
@@ -247,11 +284,11 @@ input {
 
   .search-field {
     height: 45px;
-    width: 50vw;
+    width: 60vw;
   }
 
-  .show-completed-tasks {
-    width: 50vw;
+.new-func-btn {
+    width: 60vw;
   }
 
   .task-body {
